@@ -10,8 +10,8 @@ The two main functions would be
 1) splitting a text string into two separate strings based on the chosen cursor position, and 
 2) appending or inserting text by dragging it over another string and dropping it.
 
-Additional functions are basic UI features like adding OS files by drag and drop, undo/redo, and fonts/themes customization, etc.
+Additional functions are basic UI features like adding OS files by drag and drop, undo/redo, fonts/themes customization, gestures to select/highlight: like circling a group of string object to combine them, and more etc.
 
 ***This project is an exercise and is not meant to be a finished product or representative of the business.***
 
-__©Don't Rest On Pretty (2018)__
+__©(2018) Don't Rest On Pretty__
