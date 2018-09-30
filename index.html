@@ -3,13 +3,14 @@
 <head>
   <link rel="stylesheet" type="text/css" media="screen" href="normalize.css" />
   <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>At-De-tach</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
   <script src="main.js"></script>
 </head>
-<body class="centered-wrapper">
-  <div id="drop_zone" class="centered-content" ondrop="dropFileHandler(event)" ondragover="dragOverHandler(event)">
+<body ondrop="dropFileHandler(event)" ondragover="dragOverHandler(event)">
+  <div id="drop_zone" class="centered-wrapper">
     Drag and Drop files here
   </div>
 </body>
