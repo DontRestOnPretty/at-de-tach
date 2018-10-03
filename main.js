@@ -99,7 +99,7 @@ function dropFileHandler(ev) {
       // If dropped items aren't files, reject them
       if (ev.dataTransfer.items[i].kind === "file") {
         var file = ev.dataTransfer.items[i].getAsFile();
-        var holder = document.getElementById("drop_zone");
+        var holder = document.getElementById("target_zone");
         var reader = new FileReader();
         reader.onload = function(event) {
           console.log(event.target);
