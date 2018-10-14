@@ -74,7 +74,7 @@ function dragWithCustomImage(event) {
 function dragOverHandler(ev) {
   ev.preventDefault();
   // Set the dropEffect to move
-  ev.dataTransfer.dropEffect = "move";
+  ev.dataTransfer.dropEffect = "copy";
 }
 
 function dropHandler(ev) {
@@ -107,8 +107,12 @@ function dropFileHandler(ev) {
         reader.onload = function (ev) {
           console.log(ev.target);
           holder.innerText = ev.target.result;
+          var ars = document.querySelectorAll('.expandingArea');
+          var j = ars.length;
+          while (j--) {
+            makeExpandingArea(ars[j]);
+          }
         };
-        
         console.log(file);
         reader.readAsText(file);
         console.log("... file[" + i + "].name = " + file.name);

@@ -79,7 +79,7 @@ const showPositionMarker = e => {
 
     if (input.__IS_SHOWING_MARKER && !input.__MARKER) {
       // assign a created marker to input
-      input.__MARKER = createMarker("Here I am! 😜", "position");
+      input.__MARKER = createMarker("Here I am!", "position");
       // append it to the body
       document.body.appendChild(input.__MARKER);
       document.addEventListener("click", processClick);

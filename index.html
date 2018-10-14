@@ -19,12 +19,22 @@
     <textarea id="target_zone" class="get-position-textarea input" spellcheck="false"></textarea>
   </div>
   <script>
-    const getPositionTextArea = document.querySelector(".get-position-textarea");
+    var getPositionTextArea = document.querySelector(".get-position-textarea");
     getPositionTextArea.addEventListener("input", showPositionMarker);
     getPositionTextArea.addEventListener("click", showPositionMarker);
     var areas = document.querySelectorAll('.expandingArea');
     var l = areas.length;
     while (l--) { makeExpandingArea(areas[l]); };
+    /*getPositionTextArea.addEventListener("click",
+      function(event) {
+        console.log(event.type + ' got fired again.');
+        var ars = document.querySelectorAll('.expandingArea');
+        var j = ars.length;
+        while (j--) {
+          makeExpandingArea(ars[j]);
+        }
+      }
+    );*/
   </script>
 </body>
 </html>
