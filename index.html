@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"/>
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon"/>
   <link rel="stylesheet" type="text/css" media="screen" href="normalize.css" />
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>At-De-tach</title>
+  <title>at-de-tach</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script src="main.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen" href="expand.css" />
+  <script src="src/autoexpand.js"></script>
+  <script src="src/dnd.js"></script>
+  <script src="src/getPositionXY.js"></script>
 </head>
 <body ondrop="dropFileHandler(event)" ondragover="dragOverHandler(event)">
-  <div id="drop_zone" class="top">
-    Drag and Drop files here
+  <div class="expandingArea">
+    <pre><span></span><br></pre>
+    <textarea id="target_zone" class="get-position-textarea input" spellcheck="false"></textarea>
   </div>
-  <div id="target_zone" class="bottom">
-    Text will display here
-  </div>
+  <script>
+    const getPositionTextArea = document.querySelector(".get-position-textarea");
+    getPositionTextArea.addEventListener("input", showPositionMarker);
+    getPositionTextArea.addEventListener("click", showPositionMarker);
+    var areas = document.querySelectorAll('.expandingArea');
+    var l = areas.length;
+    while (l--) { makeExpandingArea(areas[l]); };
+  </script>
 </body>
 </html>

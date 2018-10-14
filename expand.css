@@ -1,0 +1,230 @@
+ /* The trick is to position the textarea on top of the mirror element, both inside a relatively-positioned containing div. The textarea is positioned absolutely and given a width and height of 100% to make it fill the div. The mirror is positioned statically so it will expand to fit its contents. The containing div will then expand to fit the height of the mirror and this in turn will make the absolutely positioned textarea resize to fill the container, thus making it the perfect height to fit its contents.
+
+  // HTML Elements
+  <div class="expandingArea">
+    <pre><span></span><br></pre>
+    <textarea></textarea>
+  </div>
+*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+   -ms-box-sizing: border-box;
+       box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  background-color: lightpink;
+  height: 100%;
+}
+body {
+  background-color: burlywood;
+  height: auto;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 22pt;
+  font-weight: 400;
+  line-height: 24pt;
+  color: #888;
+}
+div {
+  margin: 25px;
+  width: 90vw;
+}
+/* CSS Elements */
+textarea, 
+pre {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  min-height: calc(100vh - 60px);
+  width: 100%;
+}
+.expandingArea {
+  position: relative;
+  border: 1px solid #888;
+  background: #fff;
+}
+.expandingArea > textarea,
+.expandingArea > pre {
+  padding: 5px;
+  background: transparent;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 22pt;
+  font-weight: 400;
+  line-height: 24pt;
+  color: #888;/*
+  font: 400 13px/16px helvetica, arial, sans-serif;
+  /* Make the text soft-wrap */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.expandingArea > textarea {
+  /* The border-box box model is used to allow
+   * padding whilst still keeping the overall width
+   * at exactly that of the containing element.
+   */
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  /* This height is used when JS is disabled */
+  height: 100px;
+}
+.expandingArea.active > textarea {
+  /* Hide any scrollbars */
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  /* Remove WebKit user-resize widget */
+  resize: none;
+}
+.expandingArea > pre {
+  display: none;
+}
+.expandingArea.active > pre {
+  display: block;
+  /* Hide the text; just using it for sizing */
+  visibility: hidden;
+}
+.custom-suggestions {
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.custom-suggestions--active {
+  background-color: #19b5fe;
+}
+.custom-suggestions li {
+  text-align: left;
+}
+.custom-suggestions li:hover {
+  background-color: #19b5fe;
+}
+.input {
+  border: 0;
+  border-radius: 4px;
+  color: #111;
+  font-size: 16px;
+  line-height: 16px;
+  outline: 0;
+  padding: 10px 12px;
+  position: relative;
+  text-align: left;
+  width: 230px;
+}
+.input::-webkit-input-placeholder {
+  color: #cfcfcf;
+  text-align: center;
+}
+.input:-ms-input-placeholder {
+  color: #cfcfcf;
+  text-align: center;
+}
+.input::-ms-input-placeholder {
+  color: #cfcfcf;
+  text-align: center;
+}
+.input::placeholder {
+  color: #cfcfcf;
+  text-align: center;
+}
+.input__marker {
+  background-color: #111;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px #585858;
+  display: block;
+  font-size: 12px;
+  padding: 4px 6px;
+  position: absolute;
+  -webkit-transform: translate(5%, -70%);
+          transform: translate(5%, -70%);
+  transition: top 0.1s ease 0s, left 0.1s ease 0s;
+  white-space: nowrap;
+  width: auto;
+  z-index: 9999;
+}
+.input__marker:after {
+  background-color: #111;
+  content: '';
+  height: 10px;
+  position: absolute;
+  width: 15px;
+  z-index: -1;
+}
+.input__marker--position:after {
+  bottom: 0;
+  left: 0;
+  -webkit-transform: translate(-10%, 10%) rotate(-15deg) skewX(-40deg);
+          transform: translate(-10%, 10%) rotate(-15deg) skewX(-40deg);
+}
+.input__marker--selection {
+  -webkit-transform: translate(-50%, -100%);
+          transform: translate(-50%, -100%);
+}
+.input__marker--selection:after {
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0) rotate(45deg);
+          transform: translate(-50%, 0) rotate(45deg);
+}
+.input__marker--custom {
+  -webkit-transform: translate(16px, 16px);
+          transform: translate(16px, 16px);
+}
+.input__marker--custom:after {
+  display: none;
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/*
+// JAVASCRIPT Elements
+function makeExpandingArea(container) {
+ if ( window.opera && /Mac OS X/.test( navigator.appVersion ) ) {
+  container.querySelector( 'pre' ).appendChild(document.createElement('br'));
+ }
+ var area = container.querySelector('textarea');
+ var span = container.querySelector('span');
+ if (area.addEventListener) {
+   area.addEventListener('input', function() {
+     span.textContent = area.value;
+   }, false);
+   span.textContent = area.value;
+ } else if (area.attachEvent) {
+   // IE8 compatibility
+   area.attachEvent('onpropertychange', function() {
+     span.innerText = area.value;
+   });
+   span.innerText = area.value;
+ }
+
+// Enable extra CSS
+container.className += "active";
+}var areas = document.querySelectorAll('.expandingArea');
+var l = areas.length;while (l--) {
+ makeExpandingArea(areas[l]);
+}
+*/
+

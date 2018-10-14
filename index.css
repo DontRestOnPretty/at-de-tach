@@ -1,0 +1,202 @@
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
+}
+html, body{
+  height: 100%;
+  margin: 0;
+}
+body {
+  width: 100%;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 22pt;
+  color: #888;
+  text-align: center;
+}
+p {
+  max-width: 300px;
+  margin: 0 auto 30px;
+}
+h1 {
+  font-size: 2.5rem;
+}
+textarea, 
+pre {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  height: 0;
+}
+textarea {
+  border: 1px solid red;
+  width:  calc(100vw - 20px);      /* calc and viewport to the rescue */
+  height: calc(50vh - 20px);
+  resize: none;
+  outline: none;
+}
+.expandingArea {
+  position: relative;
+  border: 1px solid #888;
+  background: #fff;
+}
+.expandingArea > textarea,
+.expandingArea > pre {
+  padding: 5px;
+  background: transparent;
+  font: 400 22pt helvetica, arial, sans-serif;
+  /* Make the text soft-wrap */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.expandingArea.active > textarea {
+  /* Hide any scrollbars */
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  /* Remove WebKit user-resize widget */
+  resize: auto;
+}
+.expandingArea > pre {
+  display: none;
+}
+.expandingArea.active > pre {
+  display: block;
+  /* Hide the text; just using it for sizing */
+  visibility: hidden;
+}
+.demo-input {
+  margin: 0;
+}
+/* text position marker */
+.custom-suggestions {
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.custom-suggestions--active {
+  background-color: #19b5fe;
+}
+.custom-suggestions li {
+  text-align: left;
+}
+.custom-suggestions li:hover {
+  background-color: #19b5fe;
+}
+.input {
+  border: 0;
+  border-radius: 4px;
+  color: #888;
+  font-size: 22pt;
+  line-height: 22pt;
+  outline: 0;
+  padding: 10px 12px;
+  position: relative;
+  text-align: left;
+  width: auto;
+}
+.input::-webkit-input-placeholder {
+  color: #cfcfcf;
+  text-align: center;
+}
+.input:-ms-input-placeholder {
+  color: #cfcfcf;
+  text-align: center;
+}
+.input::-ms-input-placeholder {
+  color: #cfcfcf;
+  text-align: center;
+}
+.input::placeholder {
+  color: #cfcfcf;
+  text-align: center;
+}
+.input__marker {
+  color: green;
+  background-color: #111;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px #585858;
+  display: block;
+  font-size: 12px;
+  padding: 4px 6px;
+  position: absolute;
+  -webkit-transform: translate(5%, -70%);
+          transform: translate(5%, -70%);
+  transition: top 0.1s ease 0s, left 0.1s ease 0s;
+  white-space: nowrap;
+  width: auto;
+  z-index: 9999;
+}
+.input__marker:after {
+  background-color: #111;
+  content: '';
+  height: 10px;
+  position: absolute;
+  width: 15px;
+  z-index: -1;
+}
+.input__marker--position:after {
+  bottom: 0;
+  left: 0;
+  -webkit-transform: translate(-10%, 10%) rotate(-15deg) skewX(-40deg);
+          transform: translate(-10%, 10%) rotate(-15deg) skewX(-40deg);
+}
+.input__marker--selection {
+  -webkit-transform: translate(-50%, -100%);
+          transform: translate(-50%, -100%);
+}
+.input__marker--selection:after {
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0) rotate(45deg);
+          transform: translate(-50%, 0) rotate(45deg);
+}
+.input__marker--custom {
+  -webkit-transform: translate(16px, 16px);
+          transform: translate(16px, 16px);
+}
+.input__marker--custom:after {
+  display: none;
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.top {
+  width: 100%;
+  height: 50vh;
+  padding: 50px;
+  /*border: 3px dashed red; */
+  background-color: peachpuff;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+}
+.bottom {
+  width: 100%;
+  min-height: calc(50vh - 7px);
+  height: auto;
+  padding: 50px;
+  /*border: 3px dashed blue; */
+  background-color: papayawhip;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+}

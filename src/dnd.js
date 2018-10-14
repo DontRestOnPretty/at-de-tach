@@ -1,4 +1,7 @@
-"use strict";
+/* jshint node: true */
+/* jshint -W117 */
+/* jshint -W083 */
+'use strict';
 
 function reorderArray(event, originalArray) {
   var movedItem = originalArray.find(function(item, index) {
@@ -12,10 +15,10 @@ function reorderArray(event, originalArray) {
     reorderArray(remainingItems.slice(0, event.newIndex)),
     [movedItem],
     reorderArray(remainingItems.slice(event.newIndex))
-  )
+  );
 
   return reorderedItems;
-};
+}
 
 function removeDragData(ev) {
   console.log("Removing drag data");
@@ -101,10 +104,11 @@ function dropFileHandler(ev) {
         var file = ev.dataTransfer.items[i].getAsFile();
         var holder = document.getElementById("target_zone");
         var reader = new FileReader();
-        reader.onload = function(event) {
-          console.log(event.target);
-          holder.innerText = event.target.result;
+        reader.onload = function (ev) {
+          console.log(ev.target);
+          holder.innerText = ev.target.result;
         };
+        
         console.log(file);
         reader.readAsText(file);
         console.log("... file[" + i + "].name = " + file.name);
@@ -112,9 +116,9 @@ function dropFileHandler(ev) {
     }
   } else {
     // Use DataTransfer interface to access the file(s)
-    for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+    for ( var j = 0; j < ev.dataTransfer.files.length; j++) {
       console.log(
-        "... file[" + i + "].name = " + ev.dataTransfer.files[i].name
+        "... file[" + j + "].name = " + ev.dataTransfer.files[j].name
       );
     }
   }
@@ -145,7 +149,7 @@ function dropFileParserHandler(ev) {
         var reader = new FileReader();
         reader.onload = function(event) {
           console.log(event.target);
-          var lines = new Array();
+          var lines = [];
           lines = event.target.result
             .replace(/\r\n/g, "\r")
             .replace(/\n/g, "\r")
@@ -159,9 +163,9 @@ function dropFileParserHandler(ev) {
     }
   } else {
     // Use DataTransfer interface to access the file(s)
-    for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+    for (var k = 0; k < ev.dataTransfer.files.length; k++) {
       console.log(
-        "... file[" + i + "].name = " + ev.dataTransfer.files[i].name
+        "... file[" + k + "].name = " + ev.dataTransfer.files[k].name
       );
     }
   }

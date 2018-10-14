@@ -2,12 +2,15 @@
 
 A drag and drop text manipulator.
 
-### Tactile Digital Editing
+### Tactile Digital Text Editing
 
-The dream back in 2006 when I first saw a multi-touch screen was the ability to
-quickly separate and reattach blocks of text based on simple rules, like whether
-they were inside or outside of braces, or being able to manually select/hightlight
-text which could then be dragged to copy or move it to a new file or position.
+My dream back in 2006, when I first saw a multi-touch screen, was to create
+the ability to quickly separate and reattach blocks of text based on simple
+rules. I imagined rules like whether they were inside or outside of braces,
+or being able to manually select/hightlight text which could then be dragged
+to copy or move it to a new file or position, possibly immediately inserting
+it into another open text file, or back into itself.
+
 I felt that boilerplate code and code snippets could then be supercharged by a
 human interface that allowed physically intuitive editing and a much shorter
 physical distance to complete the same task. Even using a mouse, dragging and
