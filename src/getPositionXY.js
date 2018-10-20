@@ -1,4 +1,4 @@
-"use strict";
+/* jshint -W014, -W097, -W104, -W117, -W119 */
 
 // create enumeration object for repeated class names
 const CLASSES = {
@@ -188,9 +188,9 @@ const getSelectionArea = e => {
     // as for left positioning, we need to first work out if the end point is on the same line or we have multiline selection
     // in the latter case, the endpoint will be the furthest possible right selection point
     const endPoint =
-      startTop !== endTop
-        ? offsetLeft + (offsetWidth - parseInt(paddingRight, 10))
-        : endLeft;
+      startTop !== endTop 
+      ? offsetLeft + (offsetWidth - parseInt(paddingRight, 10)) 
+      : endLeft;
     // we want the marker to show above the selection and in the middle of the selection so start point plus halve the endpoint minus the start point
     const newLeft = startLeft + (endPoint - startLeft) / 2;
     // set the marker positioning

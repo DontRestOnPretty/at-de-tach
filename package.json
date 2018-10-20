@@ -1,0 +1,17 @@
+{
+  "name": "at-de-tach",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "babel src -d lib",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0"
+  }
+}
